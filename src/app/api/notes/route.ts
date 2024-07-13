@@ -1,7 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
+import cors, { runMiddleware } from "@/libs/cors";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const response = NextResponse.next();
+  await runMiddleware(request, response, cors);
+
   try {
     const notes = await prisma.note.findMany();
     return NextResponse.json(notes);
@@ -12,7 +16,10 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  const response = NextResponse.next();
+  await runMiddleware(request, response, cors);
+
   try {
     const { title, content } = await request.json();
 

@@ -7,10 +7,11 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
+    "cors": "^2.8.5",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
