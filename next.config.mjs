@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  //...
-  scripts: {
-    build: "prisma generate && next build",
-  },
+  // No necesitas agregar nada aquí, Next.js utilizará las configuraciones predeterminadas
 };
 
 export default nextConfig;
