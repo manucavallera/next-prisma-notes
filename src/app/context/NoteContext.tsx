@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState, useContext, ReactNode } from "react";
+import { createContext, useState, useContext } from "react";
 import { CreateNote, UpdateNote } from "../interfaces/Note";
 import { Note } from "@prisma/client";
 
@@ -41,7 +41,7 @@ export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   async function createNote(note: CreateNote) {
-    const res = await fetch("http://localhost:3000/api/notes", {
+    const res = await fetch("/api/notes", {
       method: "POST",
       body: JSON.stringify(note),
       headers: {
@@ -53,7 +53,7 @@ export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   async function deleteNote(id: number) {
-    const res = await fetch("http://localhost:3000/api/notes/" + id, {
+    const res = await fetch("/api/notes/" + id, {
       method: "DELETE",
     });
     const data = await res.json();
@@ -61,7 +61,7 @@ export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   async function updateNote(id: number, note: UpdateNote) {
-    const res = await fetch("http://localhost:3000/api/notes/" + id, {
+    const res = await fetch("/api/notes/" + id, {
       method: "PUT",
       body: JSON.stringify(note),
       headers: {
